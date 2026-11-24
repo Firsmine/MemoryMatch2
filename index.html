@@ -24,7 +24,7 @@
       <main class="gameBoard" id="gameBoard"></main>
     </div>
 
-    <div class="winModal" id="win">
+    <div class="modal" id="win">
       <h1>You Win!</h1>
       <div class="winInfo">
         <span id="scoreWin"></span>
@@ -32,7 +32,13 @@
         <span id="totalWin"></span>
         <span id="highScoreWin"></span>
       </div>
-      <button id="btnPlayAgain" class="btn">Play Again</button>
+      <button id="btnPlayAgain" class="btn btnPlayAgain">Play Again</button>
+    </div>
+    <div class="modal" id="lose">
+      <h1>Game Over!</h1>
+      <p>You ran out of time!</p>
+      <p class="scoreLose"><span id="scoreLose"></span></p>
+      <button id="btnPlayAgainLose" class="btn btnPlayAgain">Play Again</button>
     </div>
 
     <script src="js/script.js"></script>

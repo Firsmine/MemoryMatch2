@@ -100,7 +100,7 @@ body {
   display: block !important;
 }
 
-.winModal {
+.modal {
   display: none;
   background-color: white;
   flex-direction: column;
@@ -116,4 +116,12 @@ body {
   flex-direction: column;
   gap: 0.2rem;
   margin-top: 1rem;
+}
+.scoreLose {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+h1 {
+  margin-bottom: 1rem;
+  color: darkblue;
 }

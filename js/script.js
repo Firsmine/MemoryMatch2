@@ -6,8 +6,11 @@ const timerDisplay = document.getElementById("timer");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("highScore");
 const countdownDisplay = document.getElementById("countdown");
-const winModal = document.getElementById("win");
 const container = document.getElementById("container");
+const winModal = document.getElementById("win");
+const loseModal = document.getElementById("lose");
+const btnPlayAgain = document.getElementById("btnPlayAgain");
+const btnPlayAgainLose = document.getElementById("btnPlayAgainLose");
 
 let flippedCards = [];
 let matchedCards = [];
@@ -58,7 +61,7 @@ function startTimer() {
       clearInterval(timerInterval);
       canClick = false;
       updateHighScore();
-      alert(`You ran out of time! \nYour Score: ${score}`);
+      showLoseModal();
     }
   }, 1000);
 }
@@ -113,8 +116,17 @@ function showWinModal() {
   totalWin.innerText = `Total Score: ${score}`;
   highScoreWin.innerText = `High Score: ${highScore}`;
 
-  btnPlayAgain = document.getElementById("btnPlayAgain");
   btnPlayAgain.addEventListener("click", function () {
+    window.location.reload();
+  });
+}
+function showLoseModal() {
+  container.style.display = "none";
+  loseModal.style.display = "block";
+  scoreLose = document.getElementById("scoreLose");
+  scoreLose.innerText = `Your Score: ${score}`;
+
+  btnPlayAgainLose.addEventListener("click", function () {
     window.location.reload();
   });
 }
