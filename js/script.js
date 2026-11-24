@@ -6,6 +6,8 @@ const timerDisplay = document.getElementById("timer");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("highScore");
 const countdownDisplay = document.getElementById("countdown");
+const winModal = document.getElementById("win");
+const container = document.getElementById("container");
 
 let flippedCards = [];
 let matchedCards = [];
@@ -81,14 +83,7 @@ function checkMatch() {
       score = score + timeLeft;
       scoreDisplay.innerText = score;
       updateHighScore();
-      alert(
-        `You Win!
-        Score: ${score - timeLeft} 
-        Bonus Score: ${timeLeft} 
-        Total Score: ${score} 
-        High Score: ${highScore}`,
-      );
-      window.location.reload();
+      showWinModal();
     }
   } else {
     setTimeout(() => {
@@ -100,8 +95,28 @@ function checkMatch() {
 
       flippedCards = [];
       canClick = true;
-    }, 1000);
+    }, 500);
   }
+}
+
+function showWinModal() {
+  winModal.style.display = "block";
+  container.style.display = "none";
+
+  scoreWin = document.getElementById("scoreWin");
+  bonusWin = document.getElementById("bonusWin");
+  totalWin = document.getElementById("totalWin");
+  highScoreWin = document.getElementById("highScoreWin");
+
+  scoreWin.innerText = `Score: ${score - timeLeft}`;
+  bonusWin.innerText = `Bonus Score: ${timeLeft}`;
+  totalWin.innerText = `Total Score: ${score}`;
+  highScoreWin.innerText = `High Score: ${highScore}`;
+
+  btnPlayAgain = document.getElementById("btnPlayAgain");
+  btnPlayAgain.addEventListener("click", function () {
+    window.location.reload();
+  });
 }
 
 function createBoard() {

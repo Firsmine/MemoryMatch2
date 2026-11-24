@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="container">
       <header>
         <h1 class="title">Memory Match</h1>
         <p class="subtitle">Match the photos!</p>
@@ -17,11 +17,22 @@
           <div class="stat">Score: <span id="score">0</span></div>
           <div class="stat">High Score: <span id="highScore">0</span></div>
         </div>
-        <button id="btnStart">Start Game</button>
+        <button id="btnStart" class="btn">Start Game</button>
         <span class="countdown" id="countdown">3</span>
       </header>
 
       <main class="gameBoard" id="gameBoard"></main>
+    </div>
+
+    <div class="winModal" id="win">
+      <h1>You Win!</h1>
+      <div class="winInfo">
+        <span id="scoreWin"></span>
+        <span id="bonusWin"></span>
+        <span id="totalWin"></span>
+        <span id="highScoreWin"></span>
+      </div>
+      <button id="btnPlayAgain" class="btn">Play Again</button>
     </div>
 
     <script src="js/script.js"></script>
