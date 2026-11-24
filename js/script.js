@@ -5,8 +5,7 @@ const btnStart = document.getElementById("btnStart");
 const timerDisplay = document.getElementById("timer");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("highScore");
-
-btnStart.addEventListener("click", createBoard);
+const countdownDisplay = document.getElementById("countdown");
 
 let flippedCards = [];
 let matchedCards = [];
@@ -14,6 +13,26 @@ let canClick = true;
 let score = 0;
 let timeLeft = 60;
 let timerInterval;
+let countInterval;
+
+btnStart.addEventListener("click", function () {
+  countdownDisplay.style.display = "block";
+  btnStart.style.display = "none";
+
+  countdown = 3;
+  countdownDisplay.innerText = countdown;
+  clearInterval(countInterval);
+  countInterval = setInterval(() => {
+    countdown--;
+    countdownDisplay.innerText = countdown;
+    if (countdown === 0) {
+      countdownDisplay.style.display = "none";
+      clearInterval(countInterval);
+      canClick = true;
+      createBoard();
+    }
+  }, 1000);
+});
 
 let highScore = localStorage.getItem("memoryMatchHS") || 0;
 highScoreDisplay.innerText = highScore;
@@ -63,12 +82,13 @@ function checkMatch() {
       scoreDisplay.innerText = score;
       updateHighScore();
       alert(
-        `You Win! 
-        \nScore: ${score - timeLeft} 
-        \nBonus Score: ${timeLeft} 
-        \nTotal Score: ${score} 
-        \nHigh Score: ${highScore}`,
+        `You Win!
+        Score: ${score - timeLeft} 
+        Bonus Score: ${timeLeft} 
+        Total Score: ${score} 
+        High Score: ${highScore}`,
       );
+      window.location.reload();
     }
   } else {
     setTimeout(() => {
