@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.title {
+  font-size: 2.5rem;
+  color: darkslateblue;
+  margin: 1rem;
+}
+.subtitle {
+  font-size: 1rem;
+  color: black;
+  margin: 1rem;
+  font-weight: 500;
+}
+.infoBar {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 1.1rem;
+}
+#btnStart {
+  border: none;
+  background-color: cornflowerblue;
+  width: 10rem;
+  height: 2.5rem;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 15px;
+  margin: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+#btnStart:hover {
+  background-color: #5577b5;
+  transition: all 0.3s;
+}
+
+/* game board */
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+}
+.card {
+  height: 100px;
+  background-color: #0e0e63;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s;
+  position: relative;
+}
+.card img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card.flipped {
+  background: white;
+  border: 2px solid #0e0e43;
+  transform: rotateY(180deg);
+}
+.card.flipped img {
+  display: block !important;
+}
