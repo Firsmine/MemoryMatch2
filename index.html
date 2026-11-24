@@ -17,11 +17,41 @@
           <div class="stat">Score: <span id="score">0</span></div>
           <div class="stat">High Score: <span id="highScore">0</span></div>
         </div>
-        <button id="btnStart" class="btn">Start Game</button>
-        <span class="countdown" id="countdown">3</span>
+
+        <div class="login" id="login">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            id="usernameInput"
+            class="input"
+          />
+          <select class="input" id="difficultyInput">
+            <option value="" disabled selected>Select Level</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <button id="btnStart" class="btn" disabled>Start Game</button>
+        <button id="btnInstruction" class="btn">How To Play</button>
       </header>
 
       <main class="gameBoard" id="gameBoard"></main>
+    </div>
+
+    <div class="modal" id="instructionModal">
+      <h1>How To Play</h1>
+      <ol class="instructions">
+        <li>Input username</li>
+        <li>Select difficulty</li>
+        <li>Click Button Start Game</li>
+        <li>Click the cards and match it</li>
+        <li>Enjoy!</li>
+      </ol>
+      <button class="btn" id="btnOk">Ok</button>
+    </div>
+    <div class="modal" id="countModal">
+      <span class="countdown" id="countdown">3</span>
     </div>
 
     <div class="modal" id="win">

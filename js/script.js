@@ -2,6 +2,7 @@ const IMAGES = ["cat1.jpg", "cat2.jpg", "cat3.jpg", "cat4.jpg"];
 const symbols = [...IMAGES, ...IMAGES];
 const gameBoard = document.getElementById("gameBoard");
 const btnStart = document.getElementById("btnStart");
+const btnInstruction = document.getElementById("btnInstruction");
 const timerDisplay = document.getElementById("timer");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("highScore");
@@ -9,8 +10,14 @@ const countdownDisplay = document.getElementById("countdown");
 const container = document.getElementById("container");
 const winModal = document.getElementById("win");
 const loseModal = document.getElementById("lose");
+const countModal = document.getElementById("countModal");
 const btnPlayAgain = document.getElementById("btnPlayAgain");
 const btnPlayAgainLose = document.getElementById("btnPlayAgainLose");
+const loginModal = document.getElementById("login");
+const instructionModal = document.getElementById("instructionModal");
+const btnOk = document.getElementById("btnOk");
+const usernameInput = document.getElementById("usernameInput");
+const difficultyInput = document.getElementById("difficultyInput");
 
 let flippedCards = [];
 let matchedCards = [];
@@ -19,25 +26,57 @@ let score = 0;
 let timeLeft = 60;
 let timerInterval;
 let countInterval;
+let username = "";
+let difficulty = "easy";
 
+function validateInputs() {
+  const isUsernameEmpty = usernameInput.value.trim() === "";
+  const isDifficultyEmpty = difficultyInput.value === "";
+  btnStart.disabled = isUsernameEmpty || isDifficultyEmpty;
+}
+validateInputs();
+usernameInput.addEventListener("input", validateInputs);
+difficultyInput.addEventListener("change", validateInputs);
 btnStart.addEventListener("click", function () {
+  username = usernameInput.value.trim();
+  difficulty = difficultyInput.value;
+  btnStart.disabled = true;
   countdownDisplay.style.display = "block";
   btnStart.style.display = "none";
+  showCountModal();
+});
+btnInstruction.addEventListener("click", function () {
+  instructionModal.style.display = "block";
+  container.style.display = "none";
+});
+btnOk.addEventListener("click", function () {
+  instructionModal.style.display = "none";
+  container.style.display = "block";
+});
 
+function showCountModal() {
+  btnInstruction.style.display = "none";
+  loginModal.style.display = "none";
+  container.style.display = "none";
+  countModal.style.display = "block";
   countdown = 3;
   countdownDisplay.innerText = countdown;
   clearInterval(countInterval);
   countInterval = setInterval(() => {
     countdown--;
-    countdownDisplay.innerText = countdown;
-    if (countdown === 0) {
-      countdownDisplay.style.display = "none";
+    if (countdown > 0) {
+      countdownDisplay.innerText = countdown;
+    } else {
       clearInterval(countInterval);
-      canClick = true;
-      createBoard();
+      countdownDisplay.innerText = "Go!";
+      setTimeout(() => {
+        countModal.style.display = "none";
+        canClick = true;
+        createBoard();
+      }, 1000);
     }
   }, 1000);
-});
+}
 
 let highScore = localStorage.getItem("memoryMatchHS") || 0;
 highScoreDisplay.innerText = highScore;
@@ -132,6 +171,7 @@ function showLoseModal() {
 }
 
 function createBoard() {
+  container.style.display = "block";
   gameBoard.innerHTML = "";
   matchedCards = [];
   flippedCards = [];
