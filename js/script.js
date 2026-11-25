@@ -12,6 +12,7 @@ const winModal = document.getElementById("win");
 const loseModal = document.getElementById("lose");
 const countModal = document.getElementById("countModal");
 const btnPlayAgain = document.getElementById("btnPlayAgain");
+const btnHome = document.getElementById("btnHome");
 const btnPlayAgainLose = document.getElementById("btnPlayAgainLose");
 const loginModal = document.getElementById("login");
 const instructionModal = document.getElementById("instructionModal");
@@ -45,8 +46,7 @@ btnStart.addEventListener("click", function () {
   username = usernameInput.value.trim();
   difficulty = difficultyInput.value;
   btnStart.disabled = true;
-  countdownDisplay.style.display = "block";
-  btnStart.style.display = "none";
+
   showCountModal();
 });
 btnInstruction.addEventListener("click", function () {
@@ -59,10 +59,13 @@ btnOk.addEventListener("click", function () {
 });
 
 function showCountModal() {
+  countModal.style.display = "block";
+  countdownDisplay.style.display = "block";
+  btnStart.style.display = "none";
   btnInstruction.style.display = "none";
   loginModal.style.display = "none";
+  winModal.style.display = "none";
   container.style.display = "none";
-  countModal.style.display = "block";
   countdown = 3;
   countdownDisplay.innerText = countdown;
   clearInterval(countInterval);
@@ -159,8 +162,14 @@ function showWinModal() {
   totalWin.innerText = `Total Score: ${score}`;
   highScoreWin.innerText = `High Score: ${highScore}`;
 
-  btnPlayAgain.addEventListener("click", function () {
+  btnHome.addEventListener("click", function () {
     window.location.reload();
+  });
+  btnPlayAgain.addEventListener("click", function () {
+    showCountModal();
+    setTimeout(() => {
+      createBoard();
+    }, 4000);
   });
 }
 function showLoseModal() {
