@@ -32,12 +32,16 @@ let difficulty = "easy";
 function validateInputs() {
   const isUsernameEmpty = usernameInput.value.trim() === "";
   const isDifficultyEmpty = difficultyInput.value === "";
-  btnStart.disabled = isUsernameEmpty || isDifficultyEmpty;
+  return !isUsernameEmpty || !isDifficultyEmpty;
 }
-validateInputs();
-usernameInput.addEventListener("input", validateInputs);
-difficultyInput.addEventListener("change", validateInputs);
+// validateInputs();
+// usernameInput.addEventListener("input", validateInputs);
+// difficultyInput.addEventListener("change", validateInputs);
 btnStart.addEventListener("click", function () {
+  if (usernameInput.value.trim() === "") {
+    alert("Enter your name first!");
+    return;
+  }
   username = usernameInput.value.trim();
   difficulty = difficultyInput.value;
   btnStart.disabled = true;

@@ -136,6 +136,8 @@ body {
   flex-direction: column;
   gap: 0.2rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 .scoreLose {
   margin-top: 1rem;
